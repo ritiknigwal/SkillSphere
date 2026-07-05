@@ -4,6 +4,17 @@ import API from "../api/axios";
 import ReviewList from "../components/reviews/ReviewList";
 import ConnectionButton from "../components/connections/ConnectionButton";
 
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5050"
+    : "https://skillsphere-1k44.onrender.com";
+
+const getFileUrl = (path) => {
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  return `${API_BASE_URL}${path}`;
+};
+
 function PublicProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -39,7 +50,7 @@ function PublicProfile() {
             <img
               src={
                 user.profileImage
-                  ? `http://localhost:5050${user.profileImage}`
+                  ? getFileUrl(user.profileImage)
                   : `https://ui-avatars.com/api/?name=${user.fullName}`
               }
               alt="Profile"
@@ -159,7 +170,7 @@ function PublicProfile() {
 
           {user.resume ? (
             <a
-              href={`http://localhost:5050${user.resume}`}
+              href={getFileUrl(user.resume)}
               target="_blank"
               rel="noreferrer"
               className="inline-block bg-green-600 px-5 py-3 rounded-xl hover:bg-green-700"
