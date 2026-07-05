@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5050", {
+const SOCKET_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5050"
+    : "https://skillsphere-1k44.onrender.com";
+
+const socket = io(SOCKET_URL, {
   transports: ["websocket"],
   autoConnect: true,
 });
