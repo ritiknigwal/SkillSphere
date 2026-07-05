@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5050"
+    : "https://skillsphere-1k44.onrender.com";
+
+const getFileUrl = (path) => {
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  return `${API_BASE_URL}${path}`;
+};
+
 function Profile() {
   const [user, setUser] = useState({
     fullName: "",
@@ -155,7 +166,7 @@ function Profile() {
                 <img
                   src={
                     user.profileImage
-                      ? `http://localhost:5050${user.profileImage}`
+                      ? getFileUrl(user.profileImage)
                       : `https://ui-avatars.com/api/?name=${user.fullName || "User"}`
                   }
                   alt="Profile"
@@ -184,7 +195,7 @@ function Profile() {
 
               {user.resume && (
                 <a
-                  href={`http://localhost:5050${user.resume}`}
+                  href={getFileUrl(user.resume)}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-block text-blue-400 underline mb-4"
