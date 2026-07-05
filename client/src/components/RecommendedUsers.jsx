@@ -2,6 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5050"
+    : "https://skillsphere-1k44.onrender.com";
+
+const getProfileImage = (image) => {
+  if (!image) return null;
+  if (image.startsWith("http")) return image;
+  return `${API_BASE_URL}${image}`;
+};
+
 function RecommendedUsers() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
@@ -13,7 +24,6 @@ function RecommendedUsers() {
   const fetchUsers = async () => {
     try {
       const res = await API.get("/user/all");
-
       setUsers(res.data.users);
     } catch (err) {
       console.log(err);
@@ -36,10 +46,10 @@ function RecommendedUsers() {
               <img
                 src={
                   user.profileImage
-                    ? `http://localhost:5050${user.profileImage}`
-                    : "https://ui-avatars.com/api/?name=" + user.fullName
+                    ? getProfileImage(user.profileImage)
+                    : `https://ui-avatars.com/api/?name=${user.fullName}`
                 }
-                alt=""
+                alt={user.fullName}
                 className="w-16 h-16 rounded-full object-cover flex-shrink-0"
               />
 
