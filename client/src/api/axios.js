@@ -1,7 +1,11 @@
 import axios from "axios";
 
+const isLocalhost = window.location.hostname === "localhost";
+
 const API = axios.create({
-  baseURL: "http://localhost:5050/api",
+  baseURL: isLocalhost
+    ? "http://localhost:5050/api"
+    : "https://skillsphere-1k44.onrender.com/api",
   withCredentials: false,
 });
 
