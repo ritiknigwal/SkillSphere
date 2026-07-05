@@ -25,7 +25,19 @@ console.log("EMAIL_PASS EXISTS:", !!process.env.EMAIL_PASS);
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_URL,
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: false,
+  })
+);
+
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
@@ -54,8 +66,8 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   },
 });
 
@@ -108,10 +120,8 @@ io.on("connection", (socket) => {
       senderId: data.senderId,
     });
   });
-
-  // ==========================
-  // VIDEO CALL SOCKET EVENTS
-  // ==========================
+  
+  /* VIDEO CALL SOCKET EVENTS */
 
   socket.on("video_call_user", (data) => {
     io.to(data.receiverId).emit("video_incoming_call", {
