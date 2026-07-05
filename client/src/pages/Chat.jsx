@@ -4,7 +4,12 @@ import { io } from "socket.io-client";
 import API from "../api/axios";
 import UserList from "../components/UserList";
 
-const socket = io("http://localhost:5050", {
+const SOCKET_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5050"
+    : "https://skillsphere-1k44.onrender.com";
+
+const socket = io(SOCKET_URL, {
   transports: ["websocket"],
 });
 
