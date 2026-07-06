@@ -1,16 +1,17 @@
 import nodemailer from "nodemailer";
 
 const sendEmail = async (to, subject, html) => {
-  console.log("MAIL USER:", process.env.EMAIL_USER);
-  console.log("MAIL PASS EXISTS:", Boolean(process.env.EMAIL_PASS));
-  console.log("MAIL PASS LENGTH:", process.env.EMAIL_PASS?.length);
-
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS?.trim(),
     },
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
   });
 
   await transporter.sendMail({
