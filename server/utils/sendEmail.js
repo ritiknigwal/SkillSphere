@@ -1,28 +1,31 @@
-import nodemailer from "nodemailer";
-
 const sendEmail = async (to, subject, html) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    requireTLS: true,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS?.trim(),
-    },
-    connectionTimeout: 60000,
-    greetingTimeout: 60000,
-    socketTimeout: 60000,
-  });
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "SkillSphere <onboarding@resend.dev>",
+        to,
+        subject,
+        html,
+      }),
+    });
 
-  await transporter.verify();
+    const data = await response.json();
 
-  await transporter.sendMail({
-    from: `"SkillSphere" <${process.env.EMAIL_USER}>`,
-    to,
-    subject,
-    html,
-  });
+    if (!response.ok) {
+      console.error("Resend Email Error:", data);
+      throw new Error(data?.message || "Failed to send email");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Send Email Error:", error);
+    throw error;
+  }
 };
 
 export default sendEmail;
