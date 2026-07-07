@@ -1,29 +1,27 @@
+import nodemailer from "nodemailer";
+
+const transporter = nodemailer.createTransport({
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 const sendEmail = async (to, subject, html) => {
   try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "SkillSphere <onboarding@resend.dev>",
-        to,
-        subject,
-        html,
-      }),
+    await transporter.sendMail({
+      from: `"SkillSphere" <ritikdarbar17@gmail.com>`,
+      to,
+      subject,
+      html,
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("Resend Email Error:", data);
-      throw new Error(data?.message || "Failed to send email");
-    }
-
-    return data;
+    console.log("Email sent successfully to:", to);
   } catch (error) {
-    console.error("Send Email Error:", error);
+    console.error("Brevo SMTP Error:", error);
     throw error;
   }
 };
