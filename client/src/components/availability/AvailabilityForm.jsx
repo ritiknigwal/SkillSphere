@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../../api/axios";
+import { toast } from "react-toastify";
 
 function AvailabilityForm({ onAdded }) {
   const [form, setForm] = useState({
@@ -21,7 +22,7 @@ function AvailabilityForm({ onAdded }) {
     try {
       await API.post("/availability", form);
 
-      alert("Availability added successfully");
+      toast.success("Availability added successfully");
 
       setForm({
         date: "",
@@ -33,7 +34,7 @@ function AvailabilityForm({ onAdded }) {
         onAdded();
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to add availability");
+      toast.error(err.response?.data?.message || "Failed to add availability");
     }
   };
 

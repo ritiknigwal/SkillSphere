@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../api/axios";
 import SessionForm from "../components/sessions/SessionForm";
 import SessionList from "../components/sessions/SessionList";
+import { toast } from "react-toastify";
 
 function Session() {
   const [sessions, setSessions] = useState([]);
@@ -12,7 +13,7 @@ function Session() {
       const res = await API.get("/sessions/my");
       setSessions(res.data.sessions || []);
     } catch (err) {
-      alert("Failed to load sessions");
+      toast.error("Failed to load sessions");
     }
   };
 

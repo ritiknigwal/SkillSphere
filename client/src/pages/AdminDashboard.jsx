@@ -3,6 +3,7 @@ import API from "../api/axios";
 import AdminStats from "../components/admin/AdminStats";
 import UserTable from "../components/admin/UserTable";
 import SkillTable from "../components/admin/SkillTable";
+import { toast } from "react-toastify";
 
 function AdminDashboard() {
   const [stats, setStats] = useState({});
@@ -20,7 +21,7 @@ function AdminDashboard() {
       const skillsRes = await API.get("/admin/skills");
       setSkills(skillsRes.data.skills);
     } catch (error) {
-      alert(error.response?.data?.message || "Failed to load admin dashboard");
+      toast.error(error.response?.data?.message || "Failed to load admin dashboard");
     }
   };
 
@@ -35,7 +36,7 @@ function AdminDashboard() {
       await API.delete(`/admin/users/${id}`);
       fetchDashboard();
     } catch (error) {
-      alert("Failed to delete user");
+      toast.error("Failed to delete user");
     }
   };
 
@@ -44,7 +45,7 @@ function AdminDashboard() {
       await API.put(`/admin/users/${id}/block`);
       fetchDashboard();
     } catch (error) {
-      alert("Failed to update user status");
+     toast.error("Failed to update user status");
     }
   };
 
@@ -55,7 +56,7 @@ function AdminDashboard() {
       await API.delete(`/admin/skills/${id}`);
       fetchDashboard();
     } catch (error) {
-      alert("Failed to delete skill");
+      toast.error("Failed to delete skill");
     }
   };
 

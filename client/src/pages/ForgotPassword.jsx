@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function ForgotPassword() {
     try {
       await API.post("/password-reset/send-otp", { email });
 
-      alert("Password reset OTP sent to your email");
+     toast.success("Password reset OTP sent to your email");
 
       navigate("/reset-password", {
         state: {
@@ -20,7 +21,7 @@ function ForgotPassword() {
         },
       });
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to send OTP");
+      toast.error(err.response?.data?.message || "Failed to send OTP");
     }
   };
 

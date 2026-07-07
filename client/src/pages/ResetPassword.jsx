@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -25,10 +26,10 @@ function ResetPassword() {
     try {
       await API.post("/password-reset/reset", form);
 
-      alert("Password reset successfully. Please login.");
+      toast.success("Password reset successfully. Please login.");
       navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.message || "Password reset failed");
+      toast.error(err.response?.data?.message || "Password reset failed");
     }
   };
 

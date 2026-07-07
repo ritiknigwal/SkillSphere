@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 function SkillForm({ onSkillAdded }) {
   const [form, setForm] = useState({
@@ -22,8 +23,7 @@ function SkillForm({ onSkillAdded }) {
     try {
       await API.post("/skills/add", form);
 
-      alert("Skill added successfully");
-
+      toast.success("Skill added successfully");
       setForm({
         name: "",
         category: "",
@@ -36,7 +36,7 @@ function SkillForm({ onSkillAdded }) {
       }
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.message || "Failed to add skill");
+      toast.error(err.response?.data?.message || "Failed to add skill");
     }
   };
 

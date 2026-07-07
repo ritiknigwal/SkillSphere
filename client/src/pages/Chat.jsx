@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import API from "../api/axios";
 import UserList from "../components/UserList";
+import { toast } from "react-toastify";
 
 const SOCKET_URL =
   window.location.hostname === "localhost"
@@ -235,7 +236,7 @@ function Chat() {
         )
       );
     } catch (err) {
-      alert("Failed to load chat");
+      toast.error("Failed to load chat");
     }
   };
 
@@ -372,9 +373,8 @@ function Chat() {
   };
 
   const saveEdit = async (id) => {
-    if (!id) return alert("Message id missing");
-    if (!editText.trim()) return alert("Message cannot be empty");
-
+    if (!id) return toast.error("Message id missing");
+    if (!editText.trim()) return toast.info("Message cannot be empty");
     try {
       const res = await API.put(`/messages/${id}`, {
         message: editText.trim(),
@@ -393,7 +393,7 @@ function Chat() {
       setEditMessageId(null);
       setEditText("");
     } catch (err) {
-      alert("Edit failed");
+      toast.error("Edit failed");
     }
   };
 
@@ -412,7 +412,7 @@ function Chat() {
 
       if (editMessageId === id) cancelEdit();
     } catch (err) {
-      alert("Delete failed");
+      toast.error("Delete failed");
     }
   };
 
@@ -439,10 +439,10 @@ function Chat() {
       setEditMessageId(null);
       setEditText("");
 
-      alert("Chat cleared successfully.");
+      toast.success("Chat cleared successfully.");
     } catch (err) {
       console.log(err);
-      alert("Failed to clear chat.");
+      toast.error("Failed to clear chat.");
     }
   };
 
@@ -457,7 +457,7 @@ function Chat() {
       setMessages((prev) => prev.map((m) => (m._id === id ? updated : m)));
       socket.emit("react_message", updated);
     } catch (err) {
-      alert("Reaction failed");
+      toast.error("Reaction failed");
     }
   };
 

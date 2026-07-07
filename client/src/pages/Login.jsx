@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function Login() {
       localStorage.setItem("email", res.data.email);
       localStorage.setItem("role", res.data.role);
 
-      alert("Login successful");
+      toast.success("Login successful");
 
       navigate("/dashboard");
     } catch (err) {
@@ -37,7 +38,7 @@ function Login() {
         err.response?.status === 403 &&
         err.response?.data?.isVerified === false
       ) {
-        alert("Please verify your email first.");
+        toast.info("Please verify your email first.");
 
         navigate("/verify-email", {
           state: {
@@ -48,7 +49,7 @@ function Login() {
         return;
       }
 
-      alert(err.response?.data?.message || "Login failed");
+      toast.error(err.response?.data?.message || "Login failed");
     }
   };
 

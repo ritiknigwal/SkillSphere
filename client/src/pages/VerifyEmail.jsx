@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 function VerifyEmail() {
   const navigate = useNavigate();
@@ -18,10 +19,10 @@ function VerifyEmail() {
         otp,
       });
 
-      alert("Email verified successfully. Please login now.");
+      toast.success("Email verified successfully. Please login now.");
       navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.message || "Verification failed");
+      toast.error(err.response?.data?.message || "Verification failed");
     }
   };
 
@@ -31,9 +32,9 @@ function VerifyEmail() {
         email,
       });
 
-      alert("OTP sent again to your email");
+      toast.success("OTP sent again to your email");
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to resend OTP");
+      toast.error(err.response?.data?.message || "Failed to resend OTP");
     }
   };
 

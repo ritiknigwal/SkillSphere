@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../api/axios";
 import AvailabilityForm from "../components/availability/AvailabilityForm";
 import AvailabilityList from "../components/availability/AvailabilityList";
+import { toast } from "react-toastify";
 
 function Availability() {
   const [slots, setSlots] = useState([]);
@@ -11,7 +12,7 @@ function Availability() {
       const res = await API.get("/availability/my");
       setSlots(res.data.availability || []);
     } catch (err) {
-      alert("Failed to load availability");
+      toast.error("Failed to load availability");
     }
   };
 
@@ -24,7 +25,7 @@ function Availability() {
       await API.delete(`/availability/${id}`);
       fetchAvailability();
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to delete availability");
+      toast.error(err.response?.data?.message || "Failed to delete availability");
     }
   };
 

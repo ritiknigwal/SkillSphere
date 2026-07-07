@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import API from "../api/axios";
 import ReviewList from "../components/reviews/ReviewList";
 import ConnectionButton from "../components/connections/ConnectionButton";
+import { toast } from "react-toastify";
 
 const API_BASE_URL =
   window.location.hostname === "localhost"
@@ -30,7 +31,7 @@ function PublicProfile() {
       const res = await API.get(`/user/${id}`);
       setUser(res.data.user);
     } catch (err) {
-      alert("Failed to load user profile");
+      toast.error("Failed to load user profile");
     }
   };
 

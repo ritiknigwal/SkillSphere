@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../../api/axios";
 import StarRating from "./StarRating";
+import { toast } from "react-toastify";
 
 function ReviewForm({ exchangeId, onReviewSubmitted }) {
   const [rating, setRating] = useState(5);
@@ -16,7 +17,7 @@ function ReviewForm({ exchangeId, onReviewSubmitted }) {
         comment,
       });
 
-      alert("Review submitted successfully");
+      toast.success("Review submitted successfully");
 
       setRating(5);
       setComment("");
@@ -25,7 +26,7 @@ function ReviewForm({ exchangeId, onReviewSubmitted }) {
         onReviewSubmitted();
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to submit review");
+      toast.error(err.response?.data?.message || "Failed to submit review");
     }
   };
 

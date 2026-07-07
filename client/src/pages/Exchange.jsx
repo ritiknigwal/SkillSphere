@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import API from "../api/axios";
 import ReviewForm from "../components/reviews/ReviewForm";
+import { toast } from "react-toastify";
 
 const SOCKET_URL =
   window.location.hostname === "localhost"
@@ -62,7 +63,7 @@ function Exchange() {
           body: data.message || "Exchange update received",
         });
       } else {
-        alert(data.message || "Exchange update received");
+        toast.info(data.message || "Exchange update received");
       }
     };
 
@@ -86,7 +87,7 @@ function Exchange() {
     try {
       await API.post("/exchanges/send", form);
 
-      alert("Exchange request sent successfully");
+      toast.success("Exchange request sent successfully");
 
       setForm({
         receiver: "",
@@ -97,7 +98,7 @@ function Exchange() {
 
       fetchExchanges();
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to send request");
+      toast.error(err.response?.data?.message || "Failed to send request");
     }
   };
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../../api/axios";
+import { toast } from "react-toastify";
 
 function ConnectionButton({ profileUserId }) {
   const [connections, setConnections] = useState([]);
@@ -34,10 +35,10 @@ function ConnectionButton({ profileUserId }) {
         receiver: profileUserId,
       });
 
-      alert("Connection request sent");
+      toast.success("Connection request sent");
       fetchConnections();
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to send request");
+      toast.error(err.response?.data?.message || "Failed to send request");
     } finally {
       setLoading(false);
     }

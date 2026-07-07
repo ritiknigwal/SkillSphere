@@ -8,6 +8,7 @@ import SkillForm from "../components/SkillForm.jsx";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ function Dashboard() {
       const res = await API.get("/skills/my-skills");
       setSkills(res.data.skills);
     } catch (err) {
-      alert("Failed to load skills");
+      toast.error("Failed to load skills");
     }
   };
 
@@ -52,7 +53,7 @@ function Dashboard() {
       const res = await API.get(`/skills/search?q=${query}`);
       setSkills(res.data.skills);
     } catch (err) {
-      alert("Search failed");
+      toast.error("Search failed");
     }
   };
 
@@ -63,10 +64,10 @@ function Dashboard() {
   const handleDelete = async (id) => {
     try {
       await API.delete(`/skills/${id}`);
-      alert("Skill deleted successfully");
+      toast.success("Skill deleted successfully");
       fetchSkills();
     } catch (err) {
-      alert("Failed to delete skill");
+      toast.success("Skill deleted successfully");
     }
   };
 
@@ -81,12 +82,11 @@ function Dashboard() {
         description,
       });
 
-      alert("Skill updated successfully");
-
+      toast.success("Skill updated successfully");
       setEditSkill(null);
       fetchSkills();
     } catch (err) {
-      alert("Failed to update skill");
+      toast.error("Failed to update skill");
     }
   };
 

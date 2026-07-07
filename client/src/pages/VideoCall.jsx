@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 const SOCKET_URL =
   window.location.hostname === "localhost"
@@ -238,7 +239,7 @@ function VideoCall() {
         offer,
       });
     } catch (err) {
-      alert("Camera/Mic permission required");
+     toast.error("Camera/Mic permission required");
       cleanupCall();
     }
   };
@@ -292,7 +293,7 @@ function VideoCall() {
       setCallSeconds(0);
     } catch (err) {
       console.log("Accept call failed", err);
-      alert("Failed to accept call. Check camera/mic permission.");
+      toast.error("Failed to accept call. Check camera/mic permission.");
       cleanupCall();
     }
   };
@@ -331,12 +332,12 @@ function VideoCall() {
   };
 
   const handleCallRejected = () => {
-    alert("Call rejected or user is busy");
+    toast.info("Call rejected or user is busy");
     cleanupCall();
   };
 
   const handleCallEnded = () => {
-    alert("Call ended");
+    toast.info("Call ended");
     cleanupCall();
   };
 

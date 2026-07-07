@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import ConnectionList from "../components/connections/ConnectionList";
+import { toast } from "react-toastify";
 
 function Connections() {
   const [connections, setConnections] = useState([]);
@@ -11,7 +12,7 @@ function Connections() {
       const res = await API.get("/connections/my");
       setConnections(res.data.connections || []);
     } catch (err) {
-      alert("Failed to load connections");
+      toast.error("Failed to load connections");
     }
   };
 

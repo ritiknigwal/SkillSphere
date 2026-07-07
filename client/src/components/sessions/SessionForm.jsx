@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../../api/axios";
+import { toast } from "react-toastify";
 
 function SessionForm({ onBooked }) {
   const [teachers, setTeachers] = useState([]);
@@ -112,7 +113,7 @@ function SessionForm({ onBooked }) {
     try {
       await API.post("/sessions/book", form);
 
-      alert("Session booked successfully");
+      toast.success("Session booked successfully");
 
       setForm({
         teacher: "",
@@ -129,7 +130,7 @@ function SessionForm({ onBooked }) {
         onBooked();
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Booking failed");
+      toast.error(err.response?.data?.message || "Booking failed");
     }
   };
 

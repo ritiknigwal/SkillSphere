@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import ReviewList from "../components/reviews/ReviewList";
+import { toast } from "react-toastify";
 
 function Reviews() {
   const [userId, setUserId] = useState("");
@@ -32,7 +33,7 @@ function Reviews() {
       if (idFromToken) {
         setUserId(idFromToken);
       } else {
-        alert("Failed to load reviews");
+        toast.error("Failed to load reviews");
       }
     } finally {
       setLoading(false);

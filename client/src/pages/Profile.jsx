@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 const API_BASE_URL =
   window.location.hostname === "localhost"
@@ -38,7 +39,7 @@ function Profile() {
       const res = await API.get("/user/profile");
       setUser(res.data.user);
     } catch (error) {
-      alert("Failed to load profile");
+      toast.error("Failed to load profile");
     }
   };
 
@@ -69,15 +70,15 @@ function Profile() {
 
     try {
       await API.put("/user/profile", user);
-      alert("Profile updated successfully");
+      toast.success("Profile updated successfully");
       fetchProfile();
     } catch (error) {
-      alert("Failed to update profile");
+      toast.error("Failed to update profile");
     }
   };
 
   const handlePhotoUpload = async () => {
-    if (!selectedFile) return alert("Select image first");
+    if (!selectedFile) return toast.info("Select image first");
 
     try {
       const formData = new FormData();
@@ -85,15 +86,15 @@ function Profile() {
 
       await API.post("/user/profile-photo", formData);
 
-      alert("Profile photo uploaded");
+      toast.success("Profile photo uploaded");
       fetchProfile();
     } catch (error) {
-      alert("Failed to upload photo");
+      toast.error("Failed to upload photo");
     }
   };
 
   const handleResumeUpload = async () => {
-    if (!resumeFile) return alert("Select PDF first");
+    if (!resumeFile) return toast.info("Select PDF first");
 
     try {
       const formData = new FormData();
@@ -101,10 +102,10 @@ function Profile() {
 
       await API.post("/user/upload-resume", formData);
 
-      alert("Resume uploaded successfully");
+      toast.success("Resume uploaded successfully");
       fetchProfile();
     } catch (error) {
-      alert("Failed to upload resume");
+      toast.error("Failed to upload resume");
     }
   };
 

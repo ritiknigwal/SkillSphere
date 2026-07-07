@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { io } from "socket.io-client";
+import { toast } from "react-toastify";
 
 const SOCKET_URL =
   window.location.hostname === "localhost"
@@ -43,7 +44,7 @@ function GlobalExchangeNotifications() {
           body: data.message || "New exchange update",
         });
       } else {
-        alert(data.message || "New exchange update");
+        toast.info(data.message || "New exchange update");
       }
     };
 
