@@ -26,14 +26,14 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-400">
+          <h1 className="text-3xl font-bold text-white">
             Forgot Password
           </h1>
 
-          <p className="text-slate-400 mt-2">
+          <p className="text-slate-100 mt-2">
             Enter your registered email to receive a password reset OTP.
           </p>
         </div>
@@ -50,13 +50,13 @@ function ForgotPassword() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-xl bg-white border border-slate-700 text-white outline-none focus:border-blue-500"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl text-white font-semibold transition"
+            className="w-full bg-sky-600 hover:bg-blue-500 py-3 rounded-xl text-white font-semibold transition"
           >
             Send OTP
           </button>
@@ -66,7 +66,7 @@ function ForgotPassword() {
           Remember your password?{" "}
           <Link
             to="/login"
-            className="text-blue-400 hover:underline"
+            className="text-sky-600 hover:underline"
           >
             Login
           </Link>

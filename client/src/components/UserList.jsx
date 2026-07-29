@@ -53,7 +53,7 @@ function UserList({ onSelectUser, onlineUsers = [] }) {
           const isOnline = onlineUsers.includes(user._id);
 
           return (
-            <div key={user._id} className="bg-slate-700 mb-2 rounded p-2">
+            <div key={user._id} className="bg-white-700 mb-2 rounded p-2">
               <div className="cursor-pointer" onClick={() => onSelectUser(user)}>
                 <div className="flex justify-between items-center">
                   <div>

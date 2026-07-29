@@ -44,18 +44,18 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-400">SkillSphere 🚀</h1>
-          <p className="text-slate-400 mt-2">
+          <h1 className="text-3xl font-bold text-orange-400">SkillSphere </h1>
+          <p className="text-white mt-2">
             Create your account and start exchanging skills
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-white mb-2">
               Full Name
             </label>
             <input
@@ -65,12 +65,12 @@ function Register() {
               value={formData.fullName}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-xl bg-white-800 border border-slate-700 text-white outline-none focus:border-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-300 mb-2">Email</label>
+            <label className="block text-sm text-white mb-2">Email</label>
             <input
               type="email"
               name="email"
@@ -78,12 +78,12 @@ function Register() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-xl bg-white-800 border border-slate-700 text-white outline-none focus:border-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-white mb-2">
               Password
             </label>
             <input
@@ -93,14 +93,14 @@ function Register() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-xl bg-white-800 border border-slate-700 text-white outline-none focus:border-blue-500"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl text-white font-semibold transition disabled:opacity-60"
+            className="w-full bg-sky-600 hover:bg-green-700 py-3 rounded-xl text-white font-semibold transition disabled:opacity-60"
           >
             {loading ? "Registering..." : "Register"}
           </button>
@@ -108,7 +108,7 @@ function Register() {
 
         <p className="text-center text-slate-400 mt-6">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-400 hover:underline">
+          <Link to="/login" className="text-sky-600 hover:underline">
             Login
           </Link>
         </p>

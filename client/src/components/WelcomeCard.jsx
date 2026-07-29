@@ -9,17 +9,17 @@ function WelcomeCard() {
 
   return (
 
-    <div className="bg-gradient-to-r from-blue-700 to-indigo-700 rounded-xl p-6 shadow-lg mb-6">
+    <div className="bg-gradient-to-r from-blue-600 to-indigo-500 rounded-xl p-6 shadow-lg mb-6">
 
       <h2 className="text-3xl font-bold">
         {greeting} 👋
       </h2>
 
-      <p className="text-slate-200 mt-2">
+      <p className="text-white-800 mt-2">
         Welcome back to SkillSphere.
       </p>
 
-      <p className="text-slate-300 mt-1">
+      <p className="text-white-800 mt-1">
         Learn • Teach • Connect • Grow
       </p>
 

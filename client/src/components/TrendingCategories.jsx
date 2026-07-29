@@ -33,7 +33,7 @@ function TrendingCategories() {
   ];
 
   return (
-    <div className="bg-slate-800 rounded-xl p-6 shadow-lg mb-6">
+    <div className="bg-sky-600 rounded-xl p-6 shadow-lg mb-6">
 
       <h2 className="text-2xl font-bold mb-5">
         Trending Categories

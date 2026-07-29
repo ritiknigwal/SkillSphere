@@ -12,15 +12,15 @@ function Navbar({ onLogout }) {
     }`;
 
   return (
-    <nav className="bg-slate-800 rounded-xl shadow-lg p-4 mb-6">
+    <nav className="bg-black  shadow-lg p-4 mb-6">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         {/* Logo */}
         <Link
           to="/dashboard"
-          className="text-2xl font-bold text-blue-400"
+          className="text-2xl font-bold text-yellow-500"
         >
           SkillSphere 
-          {/* 🚀 */}
+          
         </Link>
 
         {/* Navigation */}
@@ -44,7 +44,7 @@ function Navbar({ onLogout }) {
 
           <button
             onClick={onLogout}
-            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-semibold transition"
+            className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold transition"
           >
             Logout
           </button>

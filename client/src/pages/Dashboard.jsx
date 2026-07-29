@@ -108,10 +108,10 @@ function Dashboard() {
   return (
     <DashboardLayout onLogout={handleLogout}>
       <div className="max-w-7xl mx-auto text-white space-y-6">
-        <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl p-6 shadow-xl">
-          <p className="text-blue-100 text-sm">Welcome back to</p>
+        <div className="bg-gradient-to-r from-sky-600 via-indigo-400 to-purple-400 rounded-2xl p-6 shadow-2xl">
+          <p className="text-white-500 text-sm">Welcome back to</p>
           <h1 className="text-4xl font-bold mt-1">SkillSphere</h1>
-          <p className="text-blue-100 mt-3 max-w-2xl">
+          <p className="text-white-500 mt-3 max-w-2xl">
             Manage your skills, connect with learners, schedule sessions, and
             grow your professional network from one place.
           </p>

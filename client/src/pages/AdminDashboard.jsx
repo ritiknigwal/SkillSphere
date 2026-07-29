@@ -61,9 +61,9 @@ function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white p-6">
+    <div className="min-h-screen bg-white-900 text-white p-6">
       <div className="max-w-7xl mx-auto space-y-6">
-        <div className="bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 rounded-2xl p-6 shadow-xl">
+        <div className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 rounded-2xl p-6 shadow-2xl">
           <p className="text-orange-100 text-sm">Admin Control Panel</p>
 
           <h1 className="text-4xl font-bold mt-1">
