@@ -54,30 +54,31 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-400">SkillSphere 🚀</h1>
-          <p className="text-slate-400 mt-2">
+    // <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+         <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100 flex items-center justify-center px-4"> 
+         <div className="w-full max-w-md bg-neutral-800 border border-neutral-1000 rounded-2xl p-8 shadow-5xl">
+         <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-orange-500">SkillSphere </h1>
+          <p className="text-slate-50 mt-2">
             Login to continue your learning network
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-slate-300 mb-2">Email</label>
+            <label className="block text-sm text-slate-50 mb-2">Email</label>
             <input
               type="email"
               name="email"
               placeholder="Enter your email"
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-xl bg-warm-800 border border-slate-700 text-white outline-none focus:border-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-slate-50 mb-2">
               Password
             </label>
             <input
@@ -86,27 +87,28 @@ function Login() {
               placeholder="Enter your password"
               onChange={handleChange}
               required
-              className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500"
+              // className="w-full p-3 rounded-xl bg-warm-800 border border-slate-700 text-white outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-xl bg-white border border-sky-500 text-slate-900 placeholder:text-slate-400 caret-sky-600 outline-none focus:border-blue-500 focus:ring-2 focus:ring-sky"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl text-white font-semibold transition"
+            className="w-full bg-sky-700 hover:bg-blue-900 py-3 rounded-xl text-slate-50 font-semibold transition"
           >
             Login
           </button>
         </form>
 
         <div className="mt-5 text-center">
-          <Link to="/forgot-password" className="text-blue-400 hover:underline">
+          <Link to="/forgot-password" className="text-sky-400 hover:underline">
             Forgot Password?
           </Link>
         </div>
 
         <p className="text-center text-slate-400 mt-6">
           Don&apos;t have an account?{" "}
-          <Link to="/register" className="text-blue-400 hover:underline">
+          <Link to="/register" className="text-sky-400 hover:underline">
             Register
           </Link>
         </p>
